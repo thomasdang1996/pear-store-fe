@@ -11,8 +11,12 @@ export function Home() {
         <>
             <h1>Welcome!</h1>
 
-            <div className='list'>
-                {buttonList.map(renderHorizontalButton)}
+            <div className='owl-carousel'>
+                PRETTY SLIDERS
+            </div>
+
+            <div className='new-products'>
+                NEW PRODUCTS
             </div>
         </>
     )

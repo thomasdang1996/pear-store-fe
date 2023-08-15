@@ -11,10 +11,8 @@ export function ProductList(productData) {
             fetch(`${BE_PRODUCT}/getProductNames?productTypeCode=${productData.code}`)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("products: " + JSON.stringify(json))
                     setProductList(json.products)
-                }
-                )
+                })
         }, [productData]
     )
 
@@ -28,9 +26,9 @@ export function ProductList(productData) {
     return (
         <>
             <h1>{productData.title}</h1>
-            <p>
+            <div>
                 {productList.map(toProductLink)}
-            </p>
+            </div>
         </>
     )
 }

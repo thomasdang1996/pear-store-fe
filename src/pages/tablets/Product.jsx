@@ -1,50 +1,28 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 
-
-
 export function Product() {
-    const { id: productId } = useParams()
+    const { id: currentProductId } = useParams()
     const [count, setCount] = useState(0)
     const [product, setProduct] = useState({})
     const [cart, setCart] = useState(() => { return JSON.parse(localStorage.getItem('cart')) || [] })
-    const BE_ORDER = import.meta.env.VITE_PEARSTORE_BE_ORDER
     const BE_PRODUCT = import.meta.env.VITE_PEARSTORE_BE_PRODUCT
 
     useEffect(() => {
-        fetch(BE_PRODUCT + '?productId=' + productId)
+        fetch(BE_PRODUCT + '?productId=' + currentProductId)
             .then(response => response.json())
             .then(json => {
                 setProduct(() => json)
-                localStorage.setItem(
-                    'cart',
-                    JSON.stringify(cart))
+                localStorage.setItem('cart', JSON.stringify(cart))
             })
     }, [cart])
 
-    function addToDb() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        }
-
-        fetch(BE_ORDER, requestOptions)
-            .then(response => response.status)
-            .then(status => console.log('status is: ' + status))
-    }
-
     function validatedCart(currentCart) {
-        const orderItem = {
-            productId: product.id,
-            productName: product.name,
-            amount: count,
-            price: product.price
-        }
+        const orderItem = { ...product, amount: count }
         console.log(JSON.stringify(orderItem))
-        var isInList = currentCart.some(item => item.productId == productId)
+        var isInList = currentCart.some(item => item.id == currentProductId)
         return isInList
-            ? currentCart.map(item => item.productId == productId ? orderItem : item)
+            ? currentCart.map(item => item.id == currentProductId ? orderItem : item)
             : [...currentCart, orderItem]
     }
 
@@ -62,7 +40,6 @@ export function Product() {
                 </div>
                 <button onClick={() => setCart(validatedCart)}>Add</button>
             </div>
-
         </>
     )
 }

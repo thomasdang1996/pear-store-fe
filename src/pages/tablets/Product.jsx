@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 
 export function Product() {
     const { id: currentProductId } = useParams()
     const [count, setCount] = useState(0)
     const [product, setProduct] = useState({})
     const [cart, setCart] = useState(() => { return JSON.parse(localStorage.getItem('cart')) || [] })
+    const currentLocation = useLocation()
     const BE_PRODUCT = import.meta.env.VITE_PEARSTORE_BE_PRODUCT
 
     useEffect(() => {
@@ -18,7 +19,7 @@ export function Product() {
     }, [cart])
 
     function validatedCart(currentCart) {
-        const orderItem = { ...product, amount: count }
+        const orderItem = { ...product, amount: count, path: currentLocation }
         console.log(JSON.stringify(orderItem))
         var isInList = currentCart.some(item => item.id == currentProductId)
         return isInList

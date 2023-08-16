@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CategoryContext } from './CategoryContext'
 
-
-export function ProductList(productData) {
+export function ProductList() {
+    const productData = useContext(CategoryContext)
     const [productList, setProductList] = useState([])
     const BE_PRODUCT = import.meta.env.VITE_PEARSTORE_BE_PRODUCT
 

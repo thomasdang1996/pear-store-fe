@@ -1,0 +1,89 @@
+
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 20%;
+    height: 60px;
+    box-shadow: 0px 5px 15px rgb(147, 147, 147);
+    background-color: white;
+}
+
+.ul-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* ul has default padding */
+    padding-left:0; 
+    padding-right:0; 
+}
+
+.ul-container li {
+    width: 100%;
+    padding: 5px;
+}
+
+.nav-logo{
+    display: flex;
+    justify-content: left;
+}
+
+.nav-logo a {
+    text-decoration: none;
+}
+
+.nav-products {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-products a {
+    display: flex;
+    justify-content: center;
+    margin: 0 5px;
+    padding: 0px 5px;
+    color: black;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.nav-products a:hover {
+    color: var(--hover-color);
+    transition: all 0.5s;
+}
+
+.nav-products a:hover:after {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+}
+
+.nav-user {
+    display: flex;
+    justify-content: right;
+}
+
+.nav-user a {
+    display: flex;
+    margin: 0px 5px;
+    text-decoration: none;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.padded {
+    margin: 0 8px;
+    padding: 0px 8px;
+}
+
+.sticky+main {
+    padding-top: 70px;
+}

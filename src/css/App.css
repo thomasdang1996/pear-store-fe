@@ -12,17 +12,6 @@ body {
     margin: 0;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    min-width: 20%;
-    height: 60px;
-    box-shadow: 0px 5px 15px rgb(147, 147, 147);
-    background-color: white;
-}
-
 main {
     display: flex;
     justify-content: center;

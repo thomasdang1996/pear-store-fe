@@ -4,33 +4,59 @@ import { ProductRoutes } from './pages/products/ProductRoutes'
 import { ShoppingCart } from './pages/shopping-cart/ShoppingCart'
 import './css/App.css'
 import './css/NavBar.css'
+import './css/Dropdown.css'
+import { useState } from 'react'
+import { useOutsideClick } from './utils/OutsideClickEventListener'
 export default function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function showDropdown() {
+    if (isOpen) {
+      return (
+        <div id="cart-dropdown" className='cart-dropdown dropdown sticky padded'>
+          <ShoppingCart/>
+        </div>
+      )
+    }
+  }
   return (
     <>
-      <header className='nav-container sticky'>
-        <nav className='nav-logo padded'>
-          <Link to="/"><h1>pearstore.</h1></Link>
-        </nav>
-        
-        <nav className='nav-products padded'>
-          <ul className='padded'>
-            <li><Link to="/phones">Phones</Link></li>
-            <li><Link to="/tablets">Tablets</Link></li>
+      <header className='sticky'>
+        <nav className='nav-container sticky'>
+          <ul className='ul-container'>
+            <li className='nav-logo padded'>
+              <Link to="/"><h1>pearstore.</h1></Link>
+            </li>
+
+            < li className='nav-products padded'>
+              <Link to="/phones">Phones</Link>
+              <Link to="/tablets">Tablets</Link>
+            </li>
+
+            <li className='nav-user padded'>
+              <button
+                ref={useOutsideClick(() => setIsOpen(false))}
+                onClick={() => setIsOpen(!isOpen)} >
+                <Link className='shopping-cart'>
+                  <i className="fa-solid fa-cart-shopping" />
+                </Link>
+              </button>
+              <Link id='user-link'><i className="fa-solid fa-user" /></Link>
+            </li>
           </ul>
         </nav>
 
-        <nav className='nav-user padded'>
-          <Link to="/shopping-cart"><i class="fa-solid fa-cart-shopping"></i></Link>
-          <Link ><i class="fa-solid fa-user"></i></Link>
-        </nav>
+        <div className='shopping-part'>
+          {showDropdown()}
+        </div>
+
       </header>
 
-      <main className='padded'>
+      <main className='main padded'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="/phones/*" element={<ProductRoutes  {... { title: "Phones", path: "phones", code: "PHN" }} />} />
           <Route path='/tablets/*' element={<ProductRoutes  {... { title: "Tablets", path: "tablets", code: "TBLT" }} />} />
-          <Route path='/shopping-cart' element={<ShoppingCart />} />
         </Routes>
       </main>
     </>

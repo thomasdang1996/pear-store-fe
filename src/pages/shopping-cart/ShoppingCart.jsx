@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import { CategoryContext } from "../products/CategoryContext";
 import "../Pages.css"
-export function ShoppingCart() {
-    const productCategory = useContext(CategoryContext)
+export const ShoppingCart = () => {
     // use state - 2 vars: state and state-updating function
     const [shoppingCart, setShoppingCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || [])
     const [totalCost, setTotalCost] = useState(0)
+
     //  || falsy and truthy values (https://stackoverflow.com/questions/10463025/what-do-two-vertical-lines-in-an-object-value-mean-in-javascript)
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(shoppingCart))
@@ -19,15 +18,16 @@ export function ShoppingCart() {
     }, [shoppingCart]
     )
 
+
     function toLink(item) {
         return (
             <Link to={item.path}>{item.name}</Link>
         )
     }
 
-    function removeItem(productId) {
+    function removeItem(currentProductId) {
         setShoppingCart(currentShoppingCart =>
-            currentShoppingCart.filter(item => item.id !== productId))
+            currentShoppingCart.filter(item => item.id != currentProductId))
     }
 
     function increaseAmount(currentProductId) {
@@ -53,21 +53,21 @@ export function ShoppingCart() {
             <tr key={item.id}>
                 <td key='productName'>{() => toLink(item)}</td>
                 <td key='amount'>
-                    <button onClick={() => decreaseAmount(item.id)}>-</button>
+                    <button className='btn' onClick={() => decreaseAmount(item.id)}>-</button>
                     <span>{item.amount}</span>
-                    <button onClick={() => increaseAmount(item.id)}>+</button>
+                    <button className='btn' onClick={() => increaseAmount(item.id)}>+</button>
                 </td>
                 <td key='price'>{item.price}</td>
-                <td>
-                    <button onClick={() => removeItem(item.id)}> remove </button>
+                <td key='remove-button'>
+                    <button id='remove-button' className='remove-button' onClick={() => removeItem(item.id)}>remove</button>
                 </td>
             </tr>
         )
 
     }
     return (
-        <>
-            <h1>Shopping Cart</h1>
+        <div className='shopping-cart-component'>
+            <h3>Shopping Cart</h3>
             <table>
                 <tbody key='body'>
                     {shoppingCart.map(toShoppingCartItem)}
@@ -80,6 +80,7 @@ export function ShoppingCart() {
                     </tr>
                 </tfoot>
             </table>
-        </>
+        </div>
     )
 }
+export default ShoppingCart

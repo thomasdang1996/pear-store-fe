@@ -36,7 +36,7 @@ export function ProductList() {
             <ul className="bread-crumb">
                 <li>
                     <Link to={`/`}>
-                        <i class="fa-solid fa-house" />
+                        <i className="fa-solid fa-house" />
                     </Link>
                 </li>
             </ul>

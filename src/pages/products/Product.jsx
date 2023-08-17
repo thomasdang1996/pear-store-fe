@@ -13,7 +13,7 @@ export function Product() {
     const currentLocation = useLocation()
     const BE_PRODUCT = import.meta.env.VITE_PEARSTORE_BE_PRODUCT
     const productCategory = useContext(CategoryContext)
-console.log(JSON.stringify(productCategory))
+
     useEffect(() => {
         fetch(BE_PRODUCT + '?productId=' + currentProductId)
             .then(response => response.json())
@@ -25,7 +25,6 @@ console.log(JSON.stringify(productCategory))
 
     function validatedCart(currentCart) {
         const orderItem = { ...product, amount: count, path: currentLocation }
-        console.log(JSON.stringify(orderItem))
         var isInList = currentCart.some(item => item.id == currentProductId)
         return isInList
             ? currentCart.map(item => item.id == currentProductId ? orderItem : item)
@@ -37,7 +36,7 @@ console.log(JSON.stringify(productCategory))
             <ul className="bread-crumb">
                 <li>
                     <Link to={`/`}>
-                        <i class="fa-solid fa-house" />
+                        <i className="fa-solid fa-house" />
                     </Link>
                 </li>
                 <li>
@@ -58,7 +57,7 @@ console.log(JSON.stringify(productCategory))
                             <span>{count}</span>
                             <button onClick={() => setCount(num => num + 1)}>+</button>
                         </div>
-                        <button onClick={() => setCart(validatedCart)}>Add to Cartvar(--color)</button>
+                        <button onClick={() => setCart(validatedCart)}>Add to Cart</button>
                     </div>
                 </section>
 
@@ -66,7 +65,7 @@ console.log(JSON.stringify(productCategory))
             </section>
 
             <section className="recommendation">
-                <p1>People are also interested in: </p1>
+                <h1>People are also interested in: </h1>
             </section>
         </div>
     )

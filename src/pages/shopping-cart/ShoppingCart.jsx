@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import { CategoryContext } from "../pages/tablets/CategoryContext";
-
+import { CategoryContext } from "../products/CategoryContext";
+import "../Pages.css"
 export function ShoppingCart() {
     const productCategory = useContext(CategoryContext)
     // use state - 2 vars: state and state-updating function

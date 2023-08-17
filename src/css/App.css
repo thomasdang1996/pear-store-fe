@@ -1,0 +1,32 @@
+:root {
+    --color: rgb(0, 0, 128);
+    --hover-color: rgb(140, 140, 140);
+}
+
+h1 {
+    color: var(--color);
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-width: 20%;
+    height: 60px;
+    box-shadow: 0px 5px 15px rgb(147, 147, 147);
+    background-color: white;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 600pt;
+    padding: 0px 5px;
+}

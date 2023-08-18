@@ -14,7 +14,7 @@ export default function App() {
     if (isOpen) {
       return (
         <div id="cart-dropdown" className='cart-dropdown dropdown sticky padded'>
-          <ShoppingCart/>
+          <ShoppingCart />
         </div>
       )
     }
@@ -55,8 +55,12 @@ export default function App() {
       <main className='main padded'>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path="/phones/*" element={<ProductRoutes  {... { title: "Phones", path: "phones", code: "PHN" }} />} />
-          <Route path='/tablets/*' element={<ProductRoutes  {... { title: "Tablets", path: "tablets", code: "TBLT" }} />} />
+          <Route
+            path="/phones/*"
+            element={<ProductRoutes  {... { title: "Phones", path: "phones", code: "PHN" }} />} />
+          <Route
+            path='/tablets/*'
+            element={<ProductRoutes  {... { title: "Tablets", path: "tablets", code: "TBLT" }} />} />
         </Routes>
       </main>
     </>

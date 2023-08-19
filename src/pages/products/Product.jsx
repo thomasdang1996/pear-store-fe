@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom"
 import image from "./phone.png"
 import "../Pages.css"
+import "../Product.css"
 import "../BreadCrumbNav.css"
 import { CategoryContext } from "./CategoryContext";
 
@@ -48,14 +49,12 @@ export function Product() {
             <section className="product-description">
                 <section className="text-and-buttons">
                     <h1 className='product-title'> {product.name}</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Duis viverra diam non justo. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Sed vel lectus. </p>
+                    <p className="product-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Duis viverra diam non justo. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Sed vel lectus. </p>
                     <div className="amount-counter">
-                        <div>
-                            <button onClick={() => setCount(num => num - 1)}>-</button>
-                            <span>{count}</span>
-                            <button onClick={() => setCount(num => num + 1)}>+</button>
-                        </div>
-                        <button onClick={() => setCart(validatedCart)}>Add to Cart</button>
+                        <button className="amount-counter-item" onClick={() => setCount(num => num - 1)}>-</button>
+                        <span className="amount-counter-item"> {count}</span>
+                        <button className="amount-counter-item" onClick={() => setCount(num => num + 1)}>+</button>
+                        <button className="amount-counter-item" onClick={() => setCart(validatedCart)}>Add to Cart</button>
                     </div>
                 </section>
 

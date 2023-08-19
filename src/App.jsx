@@ -4,53 +4,55 @@ import { ProductRoutes } from './pages/products/ProductRoutes'
 import { ShoppingCart } from './pages/shopping-cart/ShoppingCart'
 import './css/App.css'
 import './css/NavBar.css'
-import './css/Dropdown.css'
+import './pages/user-account/User.css'
 import { useState } from 'react'
-import { useOutsideClick } from './utils/OutsideClickEventListener'
+import {  handleOutsideClick } from './utils/OutsideClickEventListener'
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   function showDropdown() {
     if (isOpen) {
       return (
-        <div id="cart-dropdown" className='cart-dropdown dropdown sticky padded'>
-          <ShoppingCart />
-        </div>
+        <ShoppingCart />
       )
     }
   }
+
+
   return (
     <>
       <header className='sticky'>
-        <nav className='nav-container sticky'>
+        <nav className='nav-container'>
           <ul className='ul-container'>
-            <li className='nav-logo padded'>
+            <li className='nav-logo'>
               <Link to="/"><h1>pearstore.</h1></Link>
             </li>
 
-            < li className='nav-products padded'>
+            < li className='nav-products'>
               <Link to="/phones">Phones</Link>
               <Link to="/tablets">Tablets</Link>
             </li>
 
-            <li className='nav-user padded'>
+            <li className='nav-user'>
               <button
                 className='shopping-cart'
-                ref={useOutsideClick(() => setIsOpen(false))}
+                ref={handleOutsideClick(() => setIsOpen(false))}
                 onClick={() => setIsOpen(!isOpen)} >
                 <i className="fa-solid fa-cart-shopping" />
               </button>
-              <Link className='user-link' id='user-link'>
-                <i className="fa-solid fa-user" />
-              </Link>
+              <div className='user-button-div'>
+                <button className='user-button'>
+                  <i className="fa-solid fa-user" />
+                </button>
+                <div className='drop-down'>
+                  Some content
+                </div>
+              </div>
             </li>
           </ul>
         </nav>
 
-        <div className='shopping-part'>
-          {showDropdown()}
-        </div>
-
+        {showDropdown()}
       </header>
 
       <main className='main padded'>

@@ -1,0 +1,23 @@
+.drop-down {
+    position: absolute;
+    top: calc(100% + .25rem);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 5px 5px 0 rgb(0, 0, 0, .1);
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+
+    /* Can click items behind the drop-down even if its hidden */
+    pointer-events: none;
+}
+
+.user-button:focus + .drop-down {
+    opacity: 1;
+}
+
+
+
+.user-button-div{
+    display: flex;
+    flex-direction: row-reverse;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import "../Pages.css"
+import "./ShoppingCart.css"
 export const ShoppingCart = () => {
     // use state - 2 vars: state and state-updating function
     const [shoppingCart, setShoppingCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || [])
@@ -50,36 +51,33 @@ export const ShoppingCart = () => {
 
     function toShoppingCartItem(item) {
         return (
-            <tr key={item.id}>
-                <td key='productName'>{() => toLink(item)}</td>
-                <td key='amount'>
+            <ul className="product-item" key={item.id}>
+                <li className='product-name' key='product-name'>{toLink(item)}</li>
+                <li key='amount' className="amount">
                     <button className='btn' onClick={() => decreaseAmount(item.id)}>-</button>
                     <span>{item.amount}</span>
                     <button className='btn' onClick={() => increaseAmount(item.id)}>+</button>
-                </td>
-                <td key='price'>{item.price}</td>
-                <td key='remove-button'>
-                    <button id='remove-button' className='remove-button' onClick={() => removeItem(item.id)}>remove</button>
-                </td>
-            </tr>
+                </li>
+                <li key='price' className="price">{item.price}</li>
+                <li key='remove' className="remove">
+                    <button className="remove-button" id='remove-button' onClick={() => removeItem(item.id)}>remove</button>
+                </li>
+            </ul>
         )
 
     }
     return (
-        <div className='shopping-cart-component'>
-            <h3>Shopping Cart</h3>
-            <table>
-                <tbody key='body'>
-                    {shoppingCart.map(toShoppingCartItem)}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Total</td>
-                        <td ></td>
-                        <td key='price'>{totalCost}</td>
-                    </tr>
-                </tfoot>
-            </table>
+        <div id="cart-dropdown" className='cart-dropdown'>
+            <h3 className="title">Shopping Cart</h3>
+
+            <div className="product-list">
+                {shoppingCart.map(toShoppingCartItem)}
+            </div>
+
+            <div className="total-item">
+                <p className="total-text">Total</p>
+                <p className="total-value">{totalCost}</p>
+            </div>
         </div>
     )
 }

@@ -2,8 +2,6 @@
 
 .nav-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     min-width: 20%;
     height: 60px;
@@ -23,7 +21,6 @@
 
 .ul-container li {
     width: 100%;
-    padding: 5px;
 }
 
 .nav-logo{
@@ -36,14 +33,11 @@
 }
 
 .nav-products {
-    text-decoration: none;
     display: flex;
     justify-content: center;
 }
 
 .nav-products a {
-    display: flex;
-    justify-content: center;
     margin: 0 5px;
     padding: 0px 5px;
     color: black;
@@ -65,12 +59,23 @@
 .nav-user {
     display: flex;
     justify-content: right;
+    align-items: center;
 }
 
-.nav-user a {
-    display: flex;
+.nav-user .user-link{
     margin: 0px 5px;
     text-decoration: none;
+    color: var(--color);
+}
+.nav-user .shopping-cart{
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    display: flex;
+    margin: 0px 5px;
+    color: var(--color);
 }
 
 .sticky {

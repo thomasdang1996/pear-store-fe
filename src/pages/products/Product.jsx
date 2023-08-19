@@ -41,15 +41,13 @@ export function Product() {
                 </li>
                 <li>
                     <Link to={`/${productCategory.path}`}>
-                        {productCategory.title  }
+                        {productCategory.title}
                     </Link>
                 </li>
             </ul>
-            <section className="description">
+            <section className="product-description">
                 <section className="text-and-buttons">
-                    <div>
-                        <h1 className='title'> {product.name}</h1>
-                    </div>
+                    <h1 className='product-title'> {product.name}</h1>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean placerat. Duis viverra diam non justo. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Sed vel lectus. </p>
                     <div className="amount-counter">
                         <div>

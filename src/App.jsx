@@ -35,13 +35,14 @@ export default function App() {
 
             <li className='nav-user padded'>
               <button
+                className='shopping-cart'
                 ref={useOutsideClick(() => setIsOpen(false))}
                 onClick={() => setIsOpen(!isOpen)} >
-                <Link className='shopping-cart'>
-                  <i className="fa-solid fa-cart-shopping" />
-                </Link>
+                <i className="fa-solid fa-cart-shopping" />
               </button>
-              <Link id='user-link'><i className="fa-solid fa-user" /></Link>
+              <Link className='user-link' id='user-link'>
+                <i className="fa-solid fa-user" />
+              </Link>
             </li>
           </ul>
         </nav>

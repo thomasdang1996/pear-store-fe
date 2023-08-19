@@ -1,0 +1,24 @@
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.grid-item b {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+}
+
+.grid-item img {
+    width: 100pt;
+}
+
+.page div {
+    display: flex;
+    justify-content: center;
+    margin: 10px 10px;
+    padding: 10px 10px;
+}

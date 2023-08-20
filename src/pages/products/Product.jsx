@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom"
 import image from "./phone.png"
 import "../Pages.css"
-import "../Product.css"
+import "./Product.css"
 import "../BreadCrumbNav.css"
 import { CategoryContext } from "./CategoryContext";
 

@@ -24,10 +24,8 @@ export function handleOutsideClick(dropDownButton, dropDownElement, ...ignoredEl
       else if (
         !isDropdownElement &&
         !isIgnoredElement) {
-        currentDropdown = document.querySelectorAll(dropDownElement)
-        Array.from(currentDropdown).forEach(element =>
-          element.classList.remove('active')
-        )
+        currentDropdown = document.querySelector(dropDownElement)
+        currentDropdown.classList.remove('active')
       }
     }
     document.addEventListener('click', handleEvent)

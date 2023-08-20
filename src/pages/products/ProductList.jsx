@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CategoryContext } from './CategoryContext'
 import { Grid } from "@mui/material";
 import "../Pages.css"
-import "../ProductList.css"
+import "./ProductList.css"
 import "../BreadCrumbNav.css"
 import image from "./phone.png"
 export function ProductList() {

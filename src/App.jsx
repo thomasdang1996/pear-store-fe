@@ -2,8 +2,8 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/home/Home'
 import { ProductRoutes } from './pages/products/ProductRoutes'
 import { ShoppingCart } from './pages/shopping-cart/ShoppingCart'
-import './css/App.css'
-import './css/NavBar.css'
+import './App.css'
+import './NavBar.css'
 import './pages/user-account/User.css'
 import './pages/shopping-cart/ShoppingCart.css'
 import { handleOutsideClick } from './utils/OutsideClickEventListener';
@@ -32,9 +32,9 @@ export default function App() {
             </li>
 
             <li className='nav-user'>
-              <div className='dropdown-btn-div' key={key}>
+              <div className='cart-dd-div dropdown-btn-div' key={key}>
                 <button className='cart-button'
-                  ref={handleOutsideClick(".cart-button", ".dropdown-btn-div", 'remove-button')}
+                  ref={handleOutsideClick(".cart-button", ".cart-dd-div", 'remove-button')}
                 >
                   <i className="fa-solid fa-cart-shopping" />
                 </button>
@@ -43,9 +43,9 @@ export default function App() {
                   <ShoppingCart />
             
               </div>
-              <div className='dropdown-btn-div'>
+              <div className='user-dd-div dropdown-btn-div'>
                 <button className='user-button'
-                  ref={handleOutsideClick(".user-button", ".dropdown-btn-div")}
+                  ref={handleOutsideClick(".user-button", ".user-dd-div")}
                 >
                   <i className="fa-solid fa-user" />
                 </button>

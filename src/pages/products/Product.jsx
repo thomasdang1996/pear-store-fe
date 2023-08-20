@@ -21,13 +21,14 @@ export function Product() {
             .then(json => {
                 setProduct(() => json)
                 localStorage.setItem('cart', JSON.stringify(cart))
+                dispatchEvent(new Event("storage"));
             })
     }, [cart])
 
     function validatedCart(currentCart) {
-        const orderItem = { ...product, amount: count, path: currentLocation }
-        var isInList = currentCart.some(item => item.id == currentProductId)
-        return isInList
+        const orderItem = { ...product, amount: count, path: window.location.href }
+        var isInShoppingCart = currentCart.some(item => item.id == currentProductId)
+        return isInShoppingCart
             ? currentCart.map(item => item.id == currentProductId ? orderItem : item)
             : [...currentCart, orderItem]
     }

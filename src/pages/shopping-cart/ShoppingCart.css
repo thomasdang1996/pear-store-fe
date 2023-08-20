@@ -1,17 +1,16 @@
-.cart-dropdown {
-    display: block;
-    float: right;
-    width: 300pt;
-    background-color: white;
-    position: relative;
+.dropdown-btn-div.active>.cart-button+.dropdown {
+    opacity: 1;
+    pointer-events: visible;
+}
 
-    /* rounded corners */
-    border-radius: 3px;
-
-    /* gap between dropdown box and the header */
-    margin: 30px 16px;
-    padding: 20px 20px;
-    box-shadow: 5px 5px 15px rgb(147, 147, 147);
+.cart-button{
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    padding: 0px 5px;
+    color: var(--color);
 }
 
 .product-item {

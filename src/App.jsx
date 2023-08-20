@@ -5,20 +5,18 @@ import { ShoppingCart } from './pages/shopping-cart/ShoppingCart'
 import './css/App.css'
 import './css/NavBar.css'
 import './pages/user-account/User.css'
-import { useState } from 'react'
-import {  handleOutsideClick } from './utils/OutsideClickEventListener'
+import './pages/shopping-cart/ShoppingCart.css'
+import { handleOutsideClick } from './utils/OutsideClickEventListener';
+import { useEffect, useState } from 'react'
+import { v4 } from 'uuid'
+
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [key, setKey] = useState()
 
-  function showDropdown() {
-    if (isOpen) {
-      return (
-        <ShoppingCart />
-      )
-    }
-  }
-
-
+  // update dropdown-btn-div key to re-render shopping cart
+  useEffect(() => {
+    window.addEventListener('storage', () => setKey(v4))
+  }, [])
   return (
     <>
       <header className='sticky'>
@@ -34,25 +32,30 @@ export default function App() {
             </li>
 
             <li className='nav-user'>
-              <button
-                className='shopping-cart'
-                ref={handleOutsideClick(() => setIsOpen(false))}
-                onClick={() => setIsOpen(!isOpen)} >
-                <i className="fa-solid fa-cart-shopping" />
-              </button>
-              <div className='user-button-div'>
-                <button className='user-button'>
+              <div className='dropdown-btn-div' key={key}>
+                <button className='cart-button'
+                  ref={handleOutsideClick(".cart-button", ".dropdown-btn-div", 'remove-button')}
+                >
+                  <i className="fa-solid fa-cart-shopping" />
+                </button>
+
+              
+                  <ShoppingCart />
+            
+              </div>
+              <div className='dropdown-btn-div'>
+                <button className='user-button'
+                  ref={handleOutsideClick(".user-button", ".dropdown-btn-div")}
+                >
                   <i className="fa-solid fa-user" />
                 </button>
-                <div className='drop-down'>
+                <div className='dropdown'>
                   Some content
                 </div>
               </div>
             </li>
           </ul>
         </nav>
-
-        {showDropdown()}
       </header>
 
       <main className='main padded'>

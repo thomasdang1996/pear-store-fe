@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
 import "../Pages.css"
 import "./ShoppingCart.css"
 export const ShoppingCart = () => {
@@ -21,8 +20,9 @@ export const ShoppingCart = () => {
 
 
     function toLink(item) {
+        console.log(item);
         return (
-            <Link to={item.path}>{item.name}</Link>
+            <a href={item.path}>{item.name}</a>
         )
     }
 
@@ -50,24 +50,25 @@ export const ShoppingCart = () => {
     }
 
     function toShoppingCartItem(item) {
-        return (
-            <ul className="product-item" key={item.id}>
-                <li className='product-name' key='product-name'>{toLink(item)}</li>
-                <li key='amount' className="amount">
-                    <button className='btn' onClick={() => decreaseAmount(item.id)}>-</button>
-                    <span>{item.amount}</span>
-                    <button className='btn' onClick={() => increaseAmount(item.id)}>+</button>
-                </li>
-                <li key='price' className="price">{item.price}</li>
-                <li key='remove' className="remove">
-                    <button className="remove-button" id='remove-button' onClick={() => removeItem(item.id)}>remove</button>
-                </li>
-            </ul>
-        )
-
+        if (item != null) {
+            return (
+                <ul className="product-item" key={item.id}>
+                    <li className='product-name' key='product-name'>{toLink(item)}</li>
+                    <li key='amount' className="amount">
+                        <button className='btn' onClick={() => decreaseAmount(item.id)}>-</button>
+                        <span>{item.amount}</span>
+                        <button className='btn' onClick={() => increaseAmount(item.id)}>+</button>
+                    </li>
+                    <li key='price' className="price">{item.price}</li>
+                    <li key='remove' className="remove">
+                        <button className="remove-button" id='remove-button' onClick={() => removeItem(item.id)}>remove</button>
+                    </li>
+                </ul>
+            )
+        }
     }
     return (
-        <div id="cart-dropdown" className='cart-dropdown'>
+        <div id="cart-dropdown" style={{ minWidth: "500px" }} className='dropdown'>
             <h3 className="title">Shopping Cart</h3>
 
             <div className="product-list">

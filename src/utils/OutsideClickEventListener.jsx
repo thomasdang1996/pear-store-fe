@@ -5,7 +5,7 @@ export function handleOutsideClick(dropDownButton, dropDownElement, ...ignoredEl
   useEffect(() => {
     const handleEvent = event => {
       const isDropdownButton = event.target.closest(dropDownButton) != null
-      const isDropdownElement = event.target.closest(dropDownElement) != null
+      const isFromDropdownList = event.target.closest(dropDownElement) != null
       const isIgnoredElement =
         ignoredElements != null &&
         ignoredElements
@@ -22,7 +22,7 @@ export function handleOutsideClick(dropDownButton, dropDownElement, ...ignoredEl
         currentDropdown.classList.toggle('active')
       }
       else if (
-        !isDropdownElement &&
+        !isFromDropdownList &&
         !isIgnoredElement) {
         currentDropdown = document.querySelector(dropDownElement)
         currentDropdown.classList.remove('active')

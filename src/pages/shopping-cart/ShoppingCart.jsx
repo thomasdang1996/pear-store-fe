@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import "../Pages.css"
 import "./ShoppingCart.css"
+import "../../dropdown/Dropdown.css"
 export const ShoppingCart = () => {
     // use state - 2 vars: state and state-updating function
     const [shoppingCart, setShoppingCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || [])

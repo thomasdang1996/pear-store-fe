@@ -2,10 +2,9 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/home/Home'
 import { ProductRoutes } from './pages/products/ProductRoutes'
 import { ShoppingCart } from './pages/shopping-cart/ShoppingCart'
+import { User } from './pages/user-account/User'
 import './App.css'
 import './NavBar.css'
-import './pages/user-account/User.css'
-import './pages/shopping-cart/ShoppingCart.css'
 import { handleOutsideClick } from './utils/OutsideClickEventListener';
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
@@ -39,9 +38,9 @@ export default function App() {
                   <i className="fa-solid fa-cart-shopping" />
                 </button>
 
-              
-                  <ShoppingCart />
-            
+
+                <ShoppingCart />
+
               </div>
               <div className='user-dd-div dropdown-btn-div'>
                 <button className='user-button'
@@ -49,9 +48,7 @@ export default function App() {
                 >
                   <i className="fa-solid fa-user" />
                 </button>
-                <div className='dropdown'>
-                  Some content
-                </div>
+                <User />
               </div>
             </li>
           </ul>

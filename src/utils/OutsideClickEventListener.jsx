@@ -11,7 +11,7 @@ export function handleOutsideClick(...ignoredElements) {
   useEffect(() => {
     const handleEvent = event => {
       const eventTarget = event.target
-      const expectedDropdown = eventTarget.closest(`.${getRefElement()}`)
+      const expectedDropdown = eventTarget.closest(getRefElementName())
       const actualDropdown = eventTarget.closest(["[dropdown]"])
       const isIgnoredElement =
         ignoredElements != null &&
@@ -19,10 +19,11 @@ export function handleOutsideClick(...ignoredElements) {
           .map(element => eventTarget.className == element)
           .includes(true)
 
+      const isDropdown = actualDropdown != null && expectedDropdown != null
       // dropdown button toggling
       // if the 'active' token of the elements exists, it removes it
       // from the list and returns false, if it doesn't exist, it is added and returns true
-      if (actualDropdown == null || (expectedDropdown == null && !isIgnoredElement)) {
+      if (!isDropdown && !isIgnoredElement) {
         toArray(document.querySelectorAll("[dropdown]"))
           .filter(dropDown => dropDown != actualDropdown)
           .forEach(item => {
@@ -30,25 +31,26 @@ export function handleOutsideClick(...ignoredElements) {
               item.classList.remove('active')
             }
           })
-      } else if (eventTarget.closest(`.${getButtonName(actualDropdown).className}`) != null) {
+      } else if (isClickedButton()) {
         expectedDropdown.classList.toggle('active')
       }
 
-      function getRefElement() {
-        return ref
+      function isClickedButton() {
+        var button = Array
+          .prototype
+          .slice
+          .call(actualDropdown.children)
+          .filter(child => child.tagName == 'BUTTON')[0]
+        return eventTarget.closest(`.${button.className}`) != null
+      }
+
+      function getRefElementName() {
+        return `.${ref
           .current
           .parentElement
           .className
           .split(' ')
-          .filter(item => item != 'active')[0]
-      }
-
-      function getButtonName(dropDown) {
-        return Array
-          .prototype
-          .slice
-          .call(dropDown.children)
-          .filter(child => child.tagName == 'BUTTON')[0]
+          .filter(item => item != 'active')[0]}`
       }
 
     }

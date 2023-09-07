@@ -2,12 +2,6 @@ import { useEffect, useRef } from "react"
 
 export function handleOutsideClick(...ignoredElements) {
   const ref = useRef()
-  function toArray(htmlList) {
-    return Array
-      .prototype
-      .slice
-      .call(htmlList)
-  }
   useEffect(() => {
     const handleEvent = event => {
       const eventTarget = event.target
@@ -26,20 +20,14 @@ export function handleOutsideClick(...ignoredElements) {
       if (!isDropdown && !isIgnoredElement) {
         toArray(document.querySelectorAll("[dropdown]"))
           .filter(dropDown => dropDown != actualDropdown)
-          .forEach(item => {
-            if (toArray(item.classList).includes('active')) {
-              item.classList.remove('active')
-            }
-          })
+          .filter(dropDown => toArray(dropDown.classList).includes('active'))
+          .forEach(item => item.classList.remove('active'))
       } else if (isClickedButton()) {
         expectedDropdown.classList.toggle('active')
       }
 
       function isClickedButton() {
-        var button = Array
-          .prototype
-          .slice
-          .call(actualDropdown.children)
+        var button = toArray(actualDropdown.children)
           .filter(child => child.tagName == 'BUTTON')[0]
         return eventTarget.closest(`.${button.className}`) != null
       }
@@ -52,11 +40,15 @@ export function handleOutsideClick(...ignoredElements) {
           .split(' ')
           .filter(item => item != 'active')[0]}`
       }
-
+      function toArray(htmlList) {
+        return Array
+          .prototype
+          .slice
+          .call(htmlList)
+      }
     }
     document.addEventListener('click', handleEvent)
-    return () =>
-      document.removeEventListener('click', handleEvent)  //to avoid memory leaks
+    return () => document.removeEventListener('click', handleEvent)  //to avoid memory leaks
   }, [])
   return ref
 }

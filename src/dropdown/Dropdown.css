@@ -1,4 +1,4 @@
-.cart-button{
+.dropdown-button{
     border: none;
     padding: 0;
     cursor: pointer;
@@ -8,22 +8,7 @@
     color: var(--color);
 }
 
-.user-button{
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    background: none;
-    outline: none;
-    padding: 0px 5px;
-    color: var(--color);
-}
-
-.dropdown-btn-div.active>.cart-button+.dropdown {
-    opacity: 1;
-    pointer-events: visible;
-}
-
-.dropdown-btn-div.active>.user-button+.dropdown {
+.dropdown-btn-div.active>.dropdown-button+.dropdown {
     opacity: 1;
     pointer-events: visible;
 }

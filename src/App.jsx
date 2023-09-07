@@ -32,20 +32,13 @@ export default function App() {
 
             <li className='nav-user'>
               <div className='dropdown-btn-div' key={key} cart-dropdown='true'>
-                <button className='cart-button'
-                  ref={handleOutsideClick("[cart-dropdown]", 'remove-button')}
-                >
+                <button className='dropdown-button' ref={handleOutsideClick("[cart-dropdown]", 'remove-button')} >
                   <i className="fa-solid fa-cart-shopping" />
                 </button>
-
-
                 <ShoppingCart />
-
               </div>
               <div className='dropdown-btn-div' user-dropdown='true'>
-                <button className='user-button'
-                  ref={handleOutsideClick( "[user-dropdown]")}
-                >
+                <button className='dropdown-button' ref={handleOutsideClick("[user-dropdown]")} >
                   <i className="fa-solid fa-user" />
                 </button>
                 <User />

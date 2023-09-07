@@ -59,6 +59,7 @@ export function handleOutsideClick(...ignoredElements) {
           .filter(child => child.tagName == 'BUTTON')[0]
           .className
       }
+
     }
     document.addEventListener('click', handleEvent)
     return () =>

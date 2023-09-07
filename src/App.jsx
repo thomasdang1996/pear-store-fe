@@ -2,7 +2,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/home/Home'
 import { ProductRoutes } from './pages/products/ProductRoutes'
 import { ShoppingCart } from './pages/shopping-cart/ShoppingCart'
-import { User } from './pages/user-account/User'
+import { User } from './pages/user-menu/User'
 import './App.css'
 import './NavBar.css'
 import { handleOutsideClick } from './utils/OutsideClickEventListener';
@@ -12,7 +12,7 @@ import { v4 } from 'uuid'
 export default function App() {
   const [key, setKey] = useState()
 
-  // update dropdown-btn-div key to re-render shopping cart
+  // update dropdown key to re-render shopping cart
   useEffect(() => {
     window.addEventListener('storage', () => setKey(v4))
   }, [])
@@ -31,17 +31,21 @@ export default function App() {
             </li>
 
             <li className='nav-user'>
-              <div className='dropdown-btn-div' key={key} cart-dropdown='true'>
-                <button className='dropdown-button' ref={handleOutsideClick("[cart-dropdown]", 'remove-button')} >
+              <div className='cart-dropdown' dropdown='true' key={key}>
+                <button className='dropdown-button' ref={handleOutsideClick('remove-button')} >
                   <i className="fa-solid fa-cart-shopping" />
                 </button>
-                <ShoppingCart />
+                <div className='dropdown-list' style={{ minWidth: "500px" }}>
+                  <ShoppingCart />
+                </div>
               </div>
-              <div className='dropdown-btn-div' user-dropdown='true'>
-                <button className='dropdown-button' ref={handleOutsideClick("[user-dropdown]")} >
+              <div className='user-dropdown' dropdown='true'>
+                <button className='dropdown-button' ref={handleOutsideClick()} >
                   <i className="fa-solid fa-user" />
                 </button>
-                <User />
+                <div className='dropdown-list'>
+                  <User />
+                </div>
               </div>
             </li>
           </ul>

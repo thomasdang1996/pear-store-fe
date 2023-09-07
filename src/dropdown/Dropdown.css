@@ -8,17 +8,17 @@
     color: var(--color);
 }
 
-.dropdown-btn-div.active>.dropdown-button+.dropdown {
+[dropdown].active>.dropdown-button+.dropdown-list {
     opacity: 1;
     pointer-events: visible;
 }
 
-.dropdown-btn-div {
+[dropdown]{
     display: flex;
     flex-direction: row-reverse;
 }
 
-.dropdown {
+.dropdown-list {
     position: absolute;
     top: calc(100% + .25rem);
     padding: 20px 20px;

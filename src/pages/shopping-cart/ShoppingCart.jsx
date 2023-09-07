@@ -69,7 +69,7 @@ export const ShoppingCart = () => {
         }
     }
     return (
-        <div id="cart-dropdown" style={{ minWidth: "500px" }} className='dropdown'>
+        <>
             <h3 className="title">Shopping Cart</h3>
 
             <div className="product-list">
@@ -80,7 +80,7 @@ export const ShoppingCart = () => {
                 <p className="total-text">Total</p>
                 <p className="total-value">{totalCost}</p>
             </div>
-        </div>
+        </>
     )
 }
 export default ShoppingCart

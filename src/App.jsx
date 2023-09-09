@@ -5,17 +5,91 @@ import { ShoppingCart } from './pages/shopping-cart/ShoppingCart'
 import { User } from './pages/user-menu/User'
 import './App.css'
 import './NavBar.css'
-import { handleOutsideClick } from './utils/OutsideClickEventListener';
 import { useEffect, useState } from 'react'
 import { v4 } from 'uuid'
 
 export default function App() {
-  const [key, setKey] = useState()
+  const [storageKey, setStorageKey] = useState(v4)
+  const [dropdowns, setDropdowns] = useState(
+    [
+      {
+        name: 'cart-dropdown',
+        visible: false,
+        image: <i className="fa-solid fa-cart-shopping" />,
+        component: <ShoppingCart />,
+        ignored: 'remove-button',
+        uniqueKey: true
+      },
+      {
+        name: 'user-dropdown',
+        visible: false,
+        image: <i className="fa-solid fa-user" />,
+        component: <User />
+      },
+      {
+        name: 'random-dropdown',
+        visible: false,
+        image: <i className="fa-solid fa-user" />,
+        component: <User />
+      }
+    ]
+  )
+
+  function openDropdown(dropdownName) {
+    const isVisible = dropdowns
+      .filter(dropdown => dropdown.name == dropdownName)[0]
+      .visible
+    setDropdowns(
+      currentDropdowns =>
+        currentDropdowns.map(
+          dropdown => dropdown.name == dropdownName
+            ? { ...dropdown, visible: !isVisible }
+            : { ...dropdown, visible: false }
+        )
+    )
+  }
 
   // update dropdown key to re-render shopping cart
   useEffect(() => {
-    window.addEventListener('storage', () => setKey(v4))
+    window.addEventListener('storage', () => setStorageKey(v4))
+    const handleEvent = event => {
+      if (event.target.closest(["[dropdown]"]) == null) {
+        setDropdowns(
+          dropdowns => dropdowns.map(dropdown => {
+            if (dropdown.ignored == event.target.className) {
+              return dropdown
+            }
+            return { ...dropdown, visible: false }
+          })
+        )
+      }
+    }
+    document.addEventListener('click', handleEvent)
+    return () => document.removeEventListener('click', handleEvent)
   }, [])
+
+  function getDropDownDom(dropdown) {
+    const dropDownKey = dropdown.uniqueKey
+      ? storageKey
+      : dropdown.name
+    return (
+      <div className={`${dropdown.name}`} dropdown='true' key={dropDownKey}>
+        <button className='dropdown-button' onClick={() => openDropdown(dropdown.name)}>
+          {dropdown.image}
+        </button>
+        <div
+          className={`${dropdown.name}-list`}
+          dropdown-list='true'
+          style={dropdown.visible
+            ? { opacity: 1, pointerEvents: "visible" }
+            : { opacity: 0, pointerEvents: "none" }
+          }>
+          {dropdown.component}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <>
       <header className='sticky'>
@@ -31,22 +105,7 @@ export default function App() {
             </li>
 
             <li className='nav-user'>
-              <div className='cart-dropdown' dropdown='true' key={key}>
-                <button className='dropdown-button' ref={handleOutsideClick('remove-button')} >
-                  <i className="fa-solid fa-cart-shopping" />
-                </button>
-                <div className='dropdown-list' style={{ minWidth: "500px" }}>
-                  <ShoppingCart />
-                </div>
-              </div>
-              <div className='user-dropdown' dropdown='true'>
-                <button className='dropdown-button' ref={handleOutsideClick()} >
-                  <i className="fa-solid fa-user" />
-                </button>
-                <div className='dropdown-list'>
-                  <User />
-                </div>
-              </div>
+              {dropdowns.map(getDropDownDom)}
             </li>
           </ul>
         </nav>

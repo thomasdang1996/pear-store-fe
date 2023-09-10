@@ -8,12 +8,7 @@
     color: var(--color);
 }
 
-/* [dropdown].active>.dropdown-button+.dropdown-list {
-    opacity: 1;
-    pointer-events: visible;
-} */
-
-[dropdown] {
+.dropdown {
     display: flex;
     flex-direction: row-reverse;
 }
@@ -26,12 +21,10 @@
     padding: 20px 20px;
     background-color: white;
     box-shadow: 0 5px 5px 0 rgb(0, 0, 0, .1);
-    /* opacity: 0; */
     transition: opacity 150ms ease-in-out;
 
     /* rounded corners */
     border-radius: 3px;
 
     /* Can click items behind the drop-down even if its hidden */
-    /* pointer-events: none; */
 }

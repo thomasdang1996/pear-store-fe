@@ -53,7 +53,7 @@ export default function App() {
   useEffect(() => {
     window.addEventListener('storage', () => setStorageKey(v4))
     const handleEvent = event => {
-      if (event.target.closest(["[dropdown]"]) == null) {
+      if (event.target.closest([".dropdown"]) == null) {
         setDropdowns(
           dropdowns => dropdowns.map(dropdown => {
             if (dropdown.ignored == event.target.className) {
@@ -69,21 +69,21 @@ export default function App() {
   }, [])
 
   function getDropDownDom(dropdown) {
-    const dropDownKey = dropdown.uniqueKey
-      ? storageKey
-      : dropdown.name
+    const isUnique = dropdown.uniqueKey
+    ? storageKey
+    : dropdown.name
+
+    const byVisibility = dropdown.visible
+      ? { opacity: 1, pointerEvents: "visible" }
+      : { opacity: 0, pointerEvents: "none" }
+
     return (
-      <div className={`${dropdown.name}`} dropdown='true' key={dropDownKey}>
+      <div className='dropdown' key={isUnique}>
         <button className='dropdown-button' onClick={() => openDropdown(dropdown.name)}>
           {dropdown.image}
         </button>
-        <div
-          className={`${dropdown.name}-list`}
-          dropdown-list='true'
-          style={dropdown.visible
-            ? { opacity: 1, pointerEvents: "visible" }
-            : { opacity: 0, pointerEvents: "none" }
-          }>
+
+        <div className={`${dropdown.name}-list`} dropdown-list='true' style={byVisibility}>
           {dropdown.component}
         </div>
       </div>

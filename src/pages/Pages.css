@@ -9,8 +9,7 @@
 }
 
 .page {
-    width: 700pt;
-    min-width: 600pt;
+    min-width: 1000pt;
     align-items: center;
     justify-content: center;
     font-family: inherit;

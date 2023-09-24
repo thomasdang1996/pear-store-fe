@@ -12,6 +12,7 @@ export function Home() {
     return (
         <div className='page'>
             <h1 className='title'>Welcome.</h1>
+            
             <div style={containerStyle}>
                 <ImageSlider />
             </div>
